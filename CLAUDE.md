@@ -7,7 +7,7 @@ A terminal Bible reader with an opencode-grade UI and an honest reading tracker.
 - Initiative: Selah (`I-20`, b05545f8-c954-4142-ae01-bedd8ab5a760)
 - Project: Selah TUI (`P-HAL-107`, de477b6f-f4e5-48ec-80a5-1c39d5f84cc7)
 - Team: Hallelx2
-- Repo: this directory (`~/dev/selah`)
+- Repo: this directory (`/home/nole/Projects/selah`)
 
 ## Stack
 

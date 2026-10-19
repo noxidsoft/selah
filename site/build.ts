@@ -1,6 +1,6 @@
 // Builds selah.noxidsoft.stream into site/dist.
 //
-//   bun site/build.ts            then  wrangler pages deploy site/dist --project-name selah
+//   bun site/build.ts            then  rsync -a --delete site/dist/ <host>:/srv/selah/  (docs/DEPLOY.md)
 //
 // Every figure on the site is measured here from the app's own data (the test fixture's imported
 // KJV, the scenes catalogue, the theme files, the tracker's rules), every key comes from KEYS,

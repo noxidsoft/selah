@@ -61,7 +61,7 @@ The install scripts download the program from this repository's [GitHub releases
 
 ## This website
 
-selah.noxidsoft.stream is a static site on Cloudflare Pages. It sets no cookies and runs no analytics. Like any website, Cloudflare logs requests. The fonts come from Google Fonts, so Google sees your IP address when the page loads them. The videos and images are served from this site.
+selah.noxidsoft.stream is a static site: files on a server, served by nginx behind Cloudflare's proxy. It sets no cookies and runs no analytics. Like any website, the server and Cloudflare log requests. The fonts come from Google Fonts, so Google sees your IP address when the page loads them. The videos and images are served from this site.
 
 ## Questions
 
