@@ -107,7 +107,16 @@ function plates(): string {
 async function releases(): Promise<Release[]> {
   const file = join(cache, "releases.json")
   try {
-    const res = await fetch("https://api.github.com/repos/noxidsoft/selah/releases?per_page=100", { headers: { accept: "application/vnd.github+json", "user-agent": "selah-site-build" } })
+    // 60 requests an hour without a token, and a build asks for two: GITHUB_TOKEN (or GH_TOKEN,
+    // or `gh auth token`) lifts it. The cached copy below covers a build without one.
+    const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN
+    const res = await fetch("https://api.github.com/repos/noxidsoft/selah/releases?per_page=100", {
+      headers: {
+        accept: "application/vnd.github+json",
+        "user-agent": "selah-site-build",
+        ...(token ? { authorization: `Bearer ${token}` } : {}),
+      },
+    })
     if (!res.ok) throw new Error(`GitHub answered ${res.status}`)
     type Asset = { name: string; size: number; browser_download_url: string }
     const raw = (await res.json()) as { tag_name: string; name: string; published_at: string; body: string; html_url: string; draft: boolean; prerelease: boolean; assets: Asset[] }[]

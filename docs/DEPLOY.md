@@ -112,9 +112,14 @@ published, non-prerelease release. So the release comes first.
    `/install.ps1`, and the verified plates to `/scenes/`, then publish it:
 
    ```sh
+   export GITHUB_TOKEN=$(gh auth token)
    bun site/build.ts
-   rsync -a --delete site/dist/ user@host:/srv/selah/
+   rsync -az --delete --chmod=D755,F644 site/dist/ prodhub:/var/www/noxidsoft.stream/public_html/selah/
    ```
+
+   The build reads this repository's releases from the GitHub API, which allows 60 requests an
+   hour unauthenticated and then answers `403`, so give it a token. A build that has succeeded
+   once can repeat without one: `site/.cache/releases.json` is the fallback.
 
    `--delete` is what keeps the webroot equal to the build; the first deploy replaces the empty
    `index.html` that is there now. Cloudflare is proxying, so purge its cache afterwards —
