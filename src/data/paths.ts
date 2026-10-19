@@ -1,4 +1,4 @@
-import { mkdirSync } from "node:fs"
+import { chmodSync, mkdirSync, statSync } from "node:fs"
 import { homedir } from "node:os"
 import { isAbsolute, join, win32 } from "node:path"
 
@@ -26,10 +26,10 @@ const root = (kind: "data" | "config" | "cache") => resolveRoot(kind)
 
 export const paths = {
   get data() {
-    return ensure(root("data"))
+    return ensure(root("data"), true)
   },
   get config() {
-    return ensure(root("config"))
+    return ensure(root("config"), true)
   },
   get cache() {
     return ensure(root("cache"))
@@ -57,7 +57,21 @@ export const paths = {
   },
 }
 
-function ensure(dir: string): string {
-  mkdirSync(dir, { recursive: true })
+/**
+ * Selah's own directories are its own: notes, journals and reading history are nobody else's
+ * business on a shared machine, so a directory Selah creates is 0700. `tighten` also repairs a
+ * data or config directory an earlier version left group- or world-readable; it is a no-op from
+ * then on. Windows has no POSIX modes (chmod there only moves the read-only bit), so it is left
+ * alone, and the caches are not touched: SELAH_SOURCES may well be a directory shared on purpose.
+ */
+function ensure(dir: string, tighten = false): string {
+  mkdirSync(dir, { recursive: true, mode: 0o700 })
+  if (tighten && process.platform !== "win32") {
+    try {
+      if (statSync(dir).mode & 0o077) chmodSync(dir, 0o700)
+    } catch {
+      // a directory Selah cannot stat or chmod is left as it is; it still opens
+    }
+  }
   return dir
 }

@@ -7,13 +7,13 @@ Selah is a Bible reader that runs in your terminal, the black window programmers
 On **Linux or macOS**, open a terminal and paste this line:
 
 ```sh
-curl -fsSL https://selah.hallelx2.com/install | sh
+curl -fsSL https://selah.noxidsoft.stream/install | sh
 ```
 
 On **Windows**, open PowerShell (search for it in the Start menu) and paste this line:
 
 ```powershell
-irm https://selah.hallelx2.com/install.ps1 | iex
+irm https://selah.noxidsoft.stream/install.ps1 | iex
 ```
 
 The installer picks the right build for your computer and checks it against its SHA-256 checksum before keeping it.
@@ -259,7 +259,7 @@ Selah also works without opening the app:
 Run the install line again. It replaces the program and leaves your data alone. To install a particular version, set `SELAH_VERSION`:
 
 ```sh
-curl -fsSL https://selah.hallelx2.com/install | SELAH_VERSION=v0.3.1 sh
+curl -fsSL https://selah.noxidsoft.stream/install | SELAH_VERSION=v0.3.1 sh
 ```
 
 ## Uninstalling
@@ -279,4 +279,4 @@ Your notes stay in Selah's data folder until you delete that too.
 - **Icons show as boxes:** your font has no Nerd Font icons. In the commands box, type `icons` and pick simple symbols.
 - **Hebrew reads in the wrong direction:** set `"hebrew": "logical"` in the settings file. Some terminals reverse right-to-left text themselves.
 - **Your terminal mishandles colour queries:** Selah asks the terminal for its colours when it starts, and a few terminals answer badly. Start it with `SELAH_NO_PALETTE=1 selah` to skip the question.
-- **Something else:** start it with `SELAH_DEBUG_LOG=selah.log selah`, then [open an issue](https://github.com/hallelx2/selah/issues) with the log attached.
+- **Something else:** start it with `SELAH_DEBUG_LOG=selah.log selah`, then [open an issue](https://github.com/noxidsoft/selah/issues) with the log attached.

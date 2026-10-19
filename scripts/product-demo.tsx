@@ -326,9 +326,9 @@ await card(
   [
     { text: "Install it in one line", size: 46, color: "#f2eded", at: 0.2 },
     { text: "Linux and macOS", size: 20, color: "#7d7a7a", at: 0.9 },
-    { text: "curl -fsSL https://selah.hallelx2.com/install | sh", size: 28, color: PRIMARY, at: 1.1 },
+    { text: "curl -fsSL https://selah.noxidsoft.stream/install | sh", size: 28, color: PRIMARY, at: 1.1 },
     { text: "Windows, in PowerShell", size: 20, color: "#7d7a7a", at: 1.9 },
-    { text: "irm https://selah.hallelx2.com/install.ps1 | iex", size: 28, color: PRIMARY, at: 2.1 },
+    { text: "irm https://selah.noxidsoft.stream/install.ps1 | iex", size: 28, color: PRIMARY, at: 2.1 },
     { text: "Then type  selah  and press enter.", size: 22, color: "#b4aeae", at: 3.0 },
   ],
   6,
@@ -658,8 +658,8 @@ await card(
   "outro",
   [
     { text: "Selah.  Pause, and consider.", size: 56, color: "#f2eded", at: 0.8 },
-    { text: "curl -fsSL https://selah.hallelx2.com/install | sh", size: 28, color: PRIMARY, at: 1.6 },
-    { text: "selah.hallelx2.com  ·  free and open source", size: 24, color: "#b4aeae", at: 2.3 },
+    { text: "curl -fsSL https://selah.noxidsoft.stream/install | sh", size: 28, color: PRIMARY, at: 1.6 },
+    { text: "selah.noxidsoft.stream  ·  free and open source", size: 24, color: "#b4aeae", at: 2.3 },
   ],
   6,
 )

@@ -1,6 +1,11 @@
 // Where Selah keeps its files on each system (HAL-2624).
 import { describe, expect, test } from "bun:test"
-import { resolveRoot } from "../src/data/paths"
+import { chmodSync, mkdirSync, mkdtempSync, rmSync, statSync, writeFileSync } from "node:fs"
+import { tmpdir } from "node:os"
+import { join } from "node:path"
+import { DEFAULT_CONFIG, saveConfig } from "../src/data/config"
+import { paths, resolveRoot } from "../src/data/paths"
+import { UserStore } from "../src/data/user"
 
 describe("data, config and cache locations", () => {
   test("Windows: settings roam in %APPDATA%, everything else stays in %LOCALAPPDATA%", () => {
@@ -24,5 +29,60 @@ describe("data, config and cache locations", () => {
 
   test("SELAH_HOME puts everything in one directory", () => {
     expect(resolveRoot("data", { SELAH_HOME: "/tmp/s", APPDATA: "x" }, "win32", "C:\\u")).toBe("/tmp/s/data")
+  })
+})
+
+// Nobody else's business: the journal, notes and reading history are 0700/0600 (security review,
+// 2026-10-19). Windows has no POSIX modes, so the modes are only asserted where they mean something.
+describe.skipIf(process.platform === "win32")("what Selah's files are readable by", () => {
+  const mode = (f: string) => statSync(f).mode & 0o777
+  const home = () => mkdtempSync(join(tmpdir(), "selah-perm-"))
+
+  const inHome = <T,>(dir: string, run: () => T): T => {
+    const before = process.env.SELAH_HOME
+    process.env.SELAH_HOME = dir
+    try {
+      return run()
+    } finally {
+      if (before === undefined) delete process.env.SELAH_HOME
+      else process.env.SELAH_HOME = before
+      rmSync(dir, { recursive: true, force: true })
+    }
+  }
+
+  test("the directories Selah makes are the reader's alone", () => {
+    const dir = home()
+    inHome(dir, () => {
+      expect(mode(paths.data)).toBe(0o700)
+      expect(mode(paths.config)).toBe(0o700)
+    })
+  })
+
+  test("a data directory an earlier version left open is tightened", () => {
+    const dir = home()
+    inHome(dir, () => {
+      mkdirSync(join(dir, "data"), { recursive: true })
+      chmodSync(join(dir, "data"), 0o755)
+      expect(mode(paths.data)).toBe(0o700)
+    })
+  })
+
+  test("user.db and its write-ahead log are 0600", () => {
+    const dir = home()
+    inHome(dir, () => {
+      const store = UserStore.open()
+      store.saveJournal(1, 1, "a thought kept to myself")
+      for (const f of ["user.db", "user.db-wal", "user.db-shm"]) expect(mode(join(dir, "data", f))).toBe(0o600)
+      store.db.close()
+    })
+  })
+
+  test("config.json is 0600, even one written 0644 before", () => {
+    const dir = home()
+    inHome(dir, () => {
+      writeFileSync(paths.configFile, "{}", { mode: 0o644 })
+      saveConfig(DEFAULT_CONFIG)
+      expect(mode(paths.configFile)).toBe(0o600)
+    })
   })
 })

@@ -28,7 +28,7 @@ export const SCENES_SOURCE = (catalogue as { images: string }).images
  * sometimes slow or failing (504 after 70s on 2026-10-11). Every plate is checked against its
  * pinned SHA-256 whichever source it came from. SELAH_SCENES_SOURCE replaces both, for your own.
  */
-export const SCENES_MIRROR = "https://selah.hallelx2.com/scenes/"
+export const SCENES_MIRROR = "https://selah.noxidsoft.stream/scenes/"
 export function scenesSources(env: Record<string, string | undefined> = process.env): string[] {
   const own = env.SELAH_SCENES_SOURCE
   return own ? [own.endsWith("/") ? own : `${own}/`] : [SCENES_MIRROR, SCENES_SOURCE]

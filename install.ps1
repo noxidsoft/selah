@@ -1,6 +1,6 @@
 # Installs Selah on Windows from the GitHub release.
 #
-#   irm https://selah.hallelx2.com/install.ps1 | iex
+#   irm https://selah.noxidsoft.stream/install.ps1 | iex
 #
 # Environment:
 #   SELAH_VERSION        a release tag such as v0.3.1 (default: the latest release)
@@ -20,7 +20,7 @@ function Install-Selah {
     [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
   }
 
-  $repo = 'hallelx2/selah'
+  $repo = 'noxidsoft/selah'
   $version = if ($env:SELAH_VERSION) { $env:SELAH_VERSION } else { 'latest' }
   $onWindows = ($PSVersionTable.PSEdition -ne 'Core') -or $IsWindows
   $localAppData = if ($env:LOCALAPPDATA) { $env:LOCALAPPDATA } else { Join-Path $HOME 'AppData/Local' }

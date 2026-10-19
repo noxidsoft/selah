@@ -3,7 +3,7 @@
 A Bible for the terminal, built on the same TUI stack as [opencode](https://github.com/anomalyco/opencode)
 (OpenTUI and Solid on Bun), with a reading tracker that tells you honestly whether you are consistent.
 
-**[selah.hallelx2.com](https://selah.hallelx2.com)**: the site, with a recording of a real session ([MP4](docs/demo/selah-demo.mp4)).
+**[selah.noxidsoft.stream](https://selah.noxidsoft.stream)**: the site, with a recording of a real session ([MP4](docs/demo/selah-demo.mp4)).
 
 ![A beam of light crossing the logo](docs/screenshots/beam.gif)
 
@@ -105,7 +105,7 @@ chapter you are reading has one, the header says so (✦), and `i` opens it full
 
 ![Doré's engraving of Jesus and the woman of Samaria, surfacing like ink](docs/screenshots/scene.gif)
 
-`selah install scenes` downloads the plates once, about 17 MB, from a copy on selah.hallelx2.com,
+`selah install scenes` downloads the plates once, about 17 MB, from a copy on selah.noxidsoft.stream,
 falling back to Project Gutenberg for any plate the copy cannot give. Each plate is checked
 against its pinned SHA-256 whichever source it came from, and a download that fails for a moment
 is retried. `SELAH_SCENES_SOURCE` points it at your own copy instead.
@@ -146,13 +146,13 @@ codex mcp add selah -- selah mcp
 ## Install
 
 ```sh
-curl -fsSL https://selah.hallelx2.com/install | sh
+curl -fsSL https://selah.noxidsoft.stream/install | sh
 ```
 
 On Windows, in PowerShell:
 
 ```powershell
-irm https://selah.hallelx2.com/install.ps1 | iex
+irm https://selah.noxidsoft.stream/install.ps1 | iex
 ```
 
 The installer picks the build for your system and checks its SHA-256 against the release:
@@ -163,7 +163,7 @@ The installer picks the build for your system and checks its SHA-256 against the
 - **Options:** set `SELAH_INSTALL_DIR` to install elsewhere, or `SELAH_VERSION=v0.3.1` to pin a
   release.
 
-Binaries are also on the [releases page](https://github.com/hallelx2/selah/releases). Windows
+Binaries are also on the [releases page](https://github.com/noxidsoft/selah/releases). Windows
 Terminal shows Selah best.
 
 The first launch downloads the King James Version and the Berean Standard Bible (about 8 MB each).
@@ -174,11 +174,14 @@ After that, Selah needs no network.
 Requires [Bun](https://bun.sh) 1.4 or later.
 
 ```sh
-git clone https://github.com/hallelx2/selah && cd selah
+git clone https://github.com/noxidsoft/selah && cd selah
 bun install
 bun src/index.tsx              # run it
 bun run build                  # or compile dist/selah for this machine
 ```
+
+Cutting a release and deploying selah.noxidsoft.stream (which serves the install line and the
+plates): [docs/DEPLOY.md](docs/DEPLOY.md).
 
 ## Use
 
