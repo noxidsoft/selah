@@ -1,4 +1,4 @@
-// Builds selah.hallelx2.com into site/dist.
+// Builds selah.noxidsoft.stream into site/dist.
 //
 //   bun site/build.ts            then  wrangler pages deploy site/dist --project-name selah
 //
@@ -22,6 +22,7 @@ import { KEYS } from "../src/ui/keys"
 import { fixtureBible } from "../test/fixture"
 import { filmLength } from "./film"
 import { home } from "./home"
+import { markdownHtml } from "./markdown"
 import { layout, ORIGIN, type Page } from "./layout"
 import { changelogPage, demoPage, downloadPage, engravingsPage, keyboard, keysPage, latestRelease, markdownPage, notFoundPage, type Plate, type Release } from "./pages"
 
@@ -106,7 +107,7 @@ function plates(): string {
 async function releases(): Promise<Release[]> {
   const file = join(cache, "releases.json")
   try {
-    const res = await fetch("https://api.github.com/repos/hallelx2/selah/releases?per_page=100", { headers: { accept: "application/vnd.github+json", "user-agent": "selah-site-build" } })
+    const res = await fetch("https://api.github.com/repos/noxidsoft/selah/releases?per_page=100", { headers: { accept: "application/vnd.github+json", "user-agent": "selah-site-build" } })
     if (!res.ok) throw new Error(`GitHub answered ${res.status}`)
     type Asset = { name: string; size: number; browser_download_url: string }
     const raw = (await res.json()) as { tag_name: string; name: string; published_at: string; body: string; html_url: string; draft: boolean; prerelease: boolean; assets: Asset[] }[]
@@ -125,7 +126,8 @@ async function releases(): Promise<Release[]> {
         tag: r.tag_name,
         name: r.name,
         date: r.published_at,
-        html: Bun.markdown.html(r.body ?? ""),
+        // release notes quote contributors' pull-request titles: rendered with no raw HTML
+        html: markdownHtml(r.body ?? ""),
         url: r.html_url,
         prerelease: r.prerelease,
         assets: r.assets.map((a) => ({ name: a.name, size: a.size, url: a.browser_download_url, sha256: sums.get(a.name) })),
@@ -248,13 +250,13 @@ const pages: Page[] = [
     path: "/docs",
     title: "Getting started · Selah",
     description: "Install Selah, open a passage, use the study desk, Matthew Henry, the Hebrew and Greek, Ask, search, plans and settings. With pictures.",
-    body: markdownPage(Bun.markdown.html(readFileSync(join(import.meta.dir, "content/docs.md"), "utf8").replace("{{help}}", help)), "docs"),
+    body: markdownPage(markdownHtml(readFileSync(join(import.meta.dir, "content/docs.md"), "utf8").replace("{{help}}", help)), "docs"),
   },
   {
     path: "/privacy",
     title: "Privacy · Selah",
     description: "What Selah stores, where, and every request it makes. No accounts, no telemetry.",
-    body: markdownPage(Bun.markdown.html(readFileSync(join(import.meta.dir, "content/privacy.md"), "utf8")), "privacy"),
+    body: markdownPage(markdownHtml(readFileSync(join(import.meta.dir, "content/privacy.md"), "utf8")), "privacy"),
   },
   { path: "/404", title: "Not found · Selah", description: "There is no page here.", body: notFoundPage() },
 ]
@@ -277,7 +279,7 @@ for (const p of pages) {
   <rect x="0.5" y="0.5" width="1199" height="629" fill="none" stroke="#2a2626"/>
   <g transform="translate(64 70) scale(0.9)">${OG_WORDMARK.replace(/^<svg[^>]*>|<\/svg>$/g, "")}</g>
   ${lines.map((l, i) => `<text x="64" y="${300 + i * 60}" font-family="IBM Plex Mono, JetBrains Mono, monospace" font-size="48" font-weight="600" fill="#f2eded">${l.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</text>`).join("")}
-  <text x="64" y="${330 + lines.length * 60}" font-family="IBM Plex Mono, JetBrains Mono, monospace" font-size="24" fill="#7d7a7a">selah.hallelx2.com</text>
+  <text x="64" y="${330 + lines.length * 60}" font-family="IBM Plex Mono, JetBrains Mono, monospace" font-size="24" fill="#7d7a7a">selah.noxidsoft.stream</text>
   <image href="${ogFrameData}" x="600" y="210" width="760" height="449" preserveAspectRatio="xMinYMin slice"/>
 </svg>`
   const svgFile = join(cache, `og-${name}.svg`)

@@ -120,16 +120,16 @@ export function home(d: HomeData): string {
             <button role="tab" aria-selected="false" data-tab="source">from source</button>
           </div>
           <div class="panel" role="tabpanel" data-panel="curl">
-            <code><span class="dim">curl -fsSL https://</span><span class="strong">selah.hallelx2.com/install</span><span class="dim"> | sh</span></code>
-            <button class="copy" data-copy="curl -fsSL https://selah.hallelx2.com/install | sh" aria-label="Copy the command">copy</button>
+            <code><span class="dim">curl -fsSL https://</span><span class="strong">selah.noxidsoft.stream/install</span><span class="dim"> | sh</span></code>
+            <button class="copy" data-copy="curl -fsSL https://selah.noxidsoft.stream/install | sh" aria-label="Copy the command">copy</button>
           </div>
           <div class="panel" role="tabpanel" data-panel="powershell" hidden>
-            <code><span class="dim">irm https://</span><span class="strong">selah.hallelx2.com/install.ps1</span><span class="dim"> | iex</span></code>
-            <button class="copy" data-copy="irm https://selah.hallelx2.com/install.ps1 | iex" aria-label="Copy the command">copy</button>
+            <code><span class="dim">irm https://</span><span class="strong">selah.noxidsoft.stream/install.ps1</span><span class="dim"> | iex</span></code>
+            <button class="copy" data-copy="irm https://selah.noxidsoft.stream/install.ps1 | iex" aria-label="Copy the command">copy</button>
           </div>
           <div class="panel" role="tabpanel" data-panel="source" hidden>
-            <code><span class="dim">git clone https://github.com/hallelx2/selah && cd selah && </span><span class="strong">bun install && bun run build</span><span class="dim"> && mkdir -p ~/.local/bin && cp dist/selah ~/.local/bin/</span></code>
-            <button class="copy" data-copy="git clone https://github.com/hallelx2/selah && cd selah && bun install && bun run build && mkdir -p ~/.local/bin && cp dist/selah ~/.local/bin/" aria-label="Copy the command">copy</button>
+            <code><span class="dim">git clone https://github.com/noxidsoft/selah && cd selah && </span><span class="strong">bun install && bun run build</span><span class="dim"> && mkdir -p ~/.local/bin && cp dist/selah ~/.local/bin/</span></code>
+            <button class="copy" data-copy="git clone https://github.com/noxidsoft/selah && cd selah && bun install && bun run build && mkdir -p ~/.local/bin && cp dist/selah ~/.local/bin/" aria-label="Copy the command">copy</button>
           </div>
         </div>
         <p class="note">
@@ -391,8 +391,8 @@ export function home(d: HomeData): string {
       <section class="cta">
         <h2>Open John 3 tonight.</h2>
         <p>One line to install. Your first chapter is a minute away.</p>
-        <div class="code big-code"><code>curl -fsSL https://selah.hallelx2.com/install | sh</code><button class="copy" data-copy="curl -fsSL https://selah.hallelx2.com/install | sh" aria-label="Copy the command">copy</button></div>
-        <p class="small">On Windows: <code>irm https://selah.hallelx2.com/install.ps1 | iex</code> · <a href="/download">all downloads</a></p>
+        <div class="code big-code"><code>curl -fsSL https://selah.noxidsoft.stream/install | sh</code><button class="copy" data-copy="curl -fsSL https://selah.noxidsoft.stream/install | sh" aria-label="Copy the command">copy</button></div>
+        <p class="small">On Windows: <code>irm https://selah.noxidsoft.stream/install.ps1 | iex</code> · <a href="/download">all downloads</a></p>
       </section>
 `
 }

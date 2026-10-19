@@ -41,7 +41,7 @@ Selah only goes online to download something you asked for. Each download is a p
 ### Doré's engravings
 
 - **When:** `selah install scenes`, or the first time you open an engraving
-- **From:** `selah.hallelx2.com/scenes`, a copy of the plates on this site, and for any plate it cannot give, `www.gutenberg.org` (Project Gutenberg #8710). Every plate is checked against its pinned SHA-256 whichever one it came from.
+- **From:** `selah.noxidsoft.stream/scenes`, a copy of the plates on this site, and for any plate it cannot give, `www.gutenberg.org` (Project Gutenberg #8710). Every plate is checked against its pinned SHA-256 whichever one it came from.
 - **In the code:** `src/data/scenes.ts`
 
 That is all of them. Each goes through `src/data/download.ts`, the one place Selah fetches anything, which is where the retries live.
@@ -57,12 +57,12 @@ If you do not use Ask, none of this happens. The same goes for `selah mcp` when 
 
 ## The installer
 
-The install scripts download the program from this repository's [GitHub releases](https://github.com/hallelx2/selah/releases) and check it against the release's `SHA256SUMS`. Nothing else is sent.
+The install scripts download the program from this repository's [GitHub releases](https://github.com/noxidsoft/selah/releases) and check it against the release's `SHA256SUMS`. Nothing else is sent.
 
 ## This website
 
-selah.hallelx2.com is a static site on Cloudflare Pages. It sets no cookies and runs no analytics. Like any website, Cloudflare logs requests. The fonts come from Google Fonts, so Google sees your IP address when the page loads them. The videos and images are served from this site.
+selah.noxidsoft.stream is a static site on Cloudflare Pages. It sets no cookies and runs no analytics. Like any website, Cloudflare logs requests. The fonts come from Google Fonts, so Google sees your IP address when the page loads them. The videos and images are served from this site.
 
 ## Questions
 
-Open an issue on [GitHub](https://github.com/hallelx2/selah/issues).
+Open an issue on [GitHub](https://github.com/noxidsoft/selah/issues).

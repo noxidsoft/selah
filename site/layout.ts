@@ -1,7 +1,7 @@
-// The frame every page of selah.hallelx2.com shares: head, nav and footer. Pages pass their
+// The frame every page of selah.noxidsoft.stream shares: head, nav and footer. Pages pass their
 // own title, description and body; the wordmark comes in from build.ts, drawn from the app's logo.
 
-export const ORIGIN = "https://selah.hallelx2.com"
+export const ORIGIN = "https://selah.noxidsoft.stream"
 
 export interface Page {
   /** The page's path on the site, e.g. "/" or "/docs". */
@@ -21,7 +21,7 @@ const NAV = [
   ["/engravings", "Engravings"],
   ["/docs", "Docs"],
   ["/changelog", "Changelog"],
-  ["https://github.com/hallelx2/selah", "GitHub"],
+  ["https://github.com/noxidsoft/selah", "GitHub"],
 ] as const
 
 const FOOTER: [string, [string, string][]][] = [
@@ -45,10 +45,10 @@ const FOOTER: [string, [string, string][]][] = [
   [
     "Project",
     [
-      ["https://github.com/hallelx2/selah", "GitHub"],
-      ["https://github.com/hallelx2/selah/releases", "Releases"],
+      ["https://github.com/noxidsoft/selah", "GitHub"],
+      ["https://github.com/noxidsoft/selah/releases", "Releases"],
       ["/privacy", "Privacy"],
-      ["https://github.com/hallelx2/selah/blob/main/LICENSE", "MIT license"],
+      ["https://github.com/noxidsoft/selah/blob/main/LICENSE", "MIT license"],
     ],
   ],
 ]

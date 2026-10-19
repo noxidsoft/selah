@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, writeFileSync } from "node:fs"
+import { chmodSync, existsSync, readFileSync, writeFileSync } from "node:fs"
 import { paths } from "./paths"
 import { DEFAULT_GOAL, type Goal } from "./stats"
 
@@ -61,5 +61,7 @@ export function loadConfig(file = paths.configFile): Config {
 }
 
 export function saveConfig(config: Config, file = paths.configFile) {
-  writeFileSync(file, JSON.stringify(config, null, 2) + "\n")
+  // 0600: the mode applies to a new file, the chmod to one an earlier version wrote 0644.
+  writeFileSync(file, JSON.stringify(config, null, 2) + "\n", { mode: 0o600 })
+  if (process.platform !== "win32") chmodSync(file, 0o600)
 }

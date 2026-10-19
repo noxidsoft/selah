@@ -1,4 +1,4 @@
-// selah.hallelx2.com (HAL-2637 to HAL-2642): the built site keeps its promises. The docs' commands
+// selah.noxidsoft.stream (HAL-2637 to HAL-2642): the built site keeps its promises. The docs' commands
 // are real, /keys is the app's own key list, the privacy page names every request the code can
 // make, the tour is whole, every internal link lands, and every download link answers.
 import { beforeAll, describe, expect, test } from "bun:test"
@@ -40,7 +40,7 @@ describe("the site", () => {
     const md = readFileSync(join(root, "site/content/docs.md"), "utf8")
     const help = await Bun.$`bun ${join(root, "src/index.tsx")} --help`.text()
     const blocks = [...md.matchAll(/```(?:sh|powershell)\n([\s\S]*?)```/g)].map((m) => m[1]!)
-    const commands = blocks.flatMap((b) => b.split("\n")).filter((l) => /(^|\s)selah\s/.test(l) && !/selah\.hallelx2\.com/.test(l))
+    const commands = blocks.flatMap((b) => b.split("\n")).filter((l) => /(^|\s)selah\s/.test(l) && !/selah\.noxidsoft\.stream/.test(l))
     expect(commands.length).toBeGreaterThan(5)
     const installable = new Set([...CATALOG.map((t) => t.id), "commentary", "concordance", "scenes"])
     for (const line of commands) {
@@ -77,7 +77,7 @@ describe("the site", () => {
       const named = f === "src/ui/scene.tsx" ? "src/data/scenes.ts" : f
       expect(privacy).toContain(named)
     }
-    for (const host of ["raw.githubusercontent.com", "codeload.github.com", "www.gutenberg.org", "selah.hallelx2.com/scenes"]) expect(privacy).toContain(host)
+    for (const host of ["raw.githubusercontent.com", "codeload.github.com", "www.gutenberg.org", "selah.noxidsoft.stream/scenes"]) expect(privacy).toContain(host)
   })
 
   test("the tours are whole: every step has its screen, and every step but the last a key", () => {
@@ -155,7 +155,7 @@ describe("the site", () => {
 
   test("every download link answers", async () => {
     const html = read("download.html")
-    const links = [...html.matchAll(/href="(https:\/\/github\.com\/hallelx2\/selah\/releases\/download\/[^"]+)"/g)].map((m) => m[1]!)
+    const links = [...html.matchAll(/href="(https:\/\/github\.com\/noxidsoft\/selah\/releases\/download\/[^"]+)"/g)].map((m) => m[1]!)
     expect(links.length).toBeGreaterThanOrEqual(9)
     const codes = await Promise.all(links.map(async (l) => (await fetch(l, { method: "HEAD", redirect: "follow" })).status))
     for (const [i, c] of codes.entries()) expect(c, links[i]).toBe(200)

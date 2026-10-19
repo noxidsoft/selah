@@ -1,4 +1,5 @@
 import { Database } from "bun:sqlite"
+import { chmodSync } from "node:fs"
 import type { DayKey } from "./dates"
 import { paths } from "./paths"
 
@@ -134,7 +135,9 @@ export class UserStore {
   }
 
   static open(file = paths.userDb) {
-    return new UserStore(new Database(file, { create: true }))
+    const store = new UserStore(new Database(file, { create: true }))
+    keepPrivate(file)
+    return store
   }
 
   static memory() {
@@ -444,6 +447,23 @@ export class UserStore {
 
   setPosition(p: Position) {
     this.set("position", p)
+  }
+}
+
+/**
+ * 0600 on the database and its WAL sidecars. The directory is already 0700 (src/data/paths.ts);
+ * this is the second lock, for a data directory someone has since opened up or pointed elsewhere.
+ * `PRAGMA journal_mode = WAL` in the schema has created user.db-wal and -shm by the time the
+ * constructor returns, so one pass covers all three. Windows has no POSIX modes.
+ */
+function keepPrivate(file: string) {
+  if (process.platform === "win32") return
+  for (const f of [file, `${file}-wal`, `${file}-shm`]) {
+    try {
+      chmodSync(f, 0o600)
+    } catch {
+      // a sidecar that is not there yet, or a file Selah does not own: the directory still guards it
+    }
   }
 }
 

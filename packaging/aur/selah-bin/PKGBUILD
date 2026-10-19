@@ -1,18 +1,20 @@
-# Maintainer: hallelx2 <halleluyaholudele@gmail.com>
+# Maintainer: Nole Dixon
 pkgname=selah-bin
 pkgver=0.3.2
 pkgrel=1
 pkgdesc="A Bible for the terminal: study desk, Matthew Henry, Hebrew and Greek, Doré engravings, Ask your own Claude or Codex, and an honest reading tracker"
 arch=('x86_64' 'aarch64')
-url="https://github.com/hallelx2/selah"
+url="https://github.com/noxidsoft/selah"
 license=('MIT')
 provides=('selah')
 conflicts=('selah')
 # A Bun-compiled executable carries its app after the ELF sections; stripping destroys it.
 options=('!strip' '!debug')
-source=("LICENSE-$pkgver::https://raw.githubusercontent.com/hallelx2/selah/v$pkgver/LICENSE")
-source_x86_64=("selah-$pkgver-x86_64::https://github.com/hallelx2/selah/releases/download/v$pkgver/selah-linux-x64")
-source_aarch64=("selah-$pkgver-aarch64::https://github.com/hallelx2/selah/releases/download/v$pkgver/selah-linux-arm64")
+source=("LICENSE-$pkgver::https://raw.githubusercontent.com/noxidsoft/selah/v$pkgver/LICENSE")
+source_x86_64=("selah-$pkgver-x86_64::https://github.com/noxidsoft/selah/releases/download/v$pkgver/selah-linux-x64")
+source_aarch64=("selah-$pkgver-aarch64::https://github.com/noxidsoft/selah/releases/download/v$pkgver/selah-linux-arm64")
+# The sums below are the fork's first release's; regenerate with `updpkgsums` after every
+# release of noxidsoft/selah, since each build has its own bytes.
 sha256sums=('9e37de5278988bdf453acf1055de228e19f2ed4e892cd3bc9b0af1b7491b9b5b')
 sha256sums_x86_64=('ac851991e81bbdea3dcc30129e9ff74d05f74c80d49a56c7907d0e3cb6a582a7')
 sha256sums_aarch64=('1e8beb1b423b9d3b43a9eee9a246c5ccf576eea3f4028dfab0ffeb26b9d6c894')

@@ -112,7 +112,7 @@ describe("download", () => {
   })
 
   test("live: a real gzip-served file from GitHub downloads whole, in one try", async () => {
-    const data = await download("https://raw.githubusercontent.com/hallelx2/selah/main/README.md", { label: "the README", attempts: 1 })
+    const data = await download("https://raw.githubusercontent.com/noxidsoft/selah/main/README.md", { label: "the README", attempts: 1 })
     expect(new TextDecoder().decode(data)).toContain("# Selah")
   }, 30_000)
 

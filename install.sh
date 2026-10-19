@@ -1,7 +1,7 @@
 #!/bin/sh
 # Installs the Selah binary for this machine from the GitHub release.
 #
-#   curl -fsSL https://selah.hallelx2.com/install | sh
+#   curl -fsSL https://selah.noxidsoft.stream/install | sh
 #
 # Environment:
 #   SELAH_VERSION      a release tag such as v0.1.0 (default: the latest release)
@@ -9,7 +9,7 @@
 #   SELAH_DOWNLOAD_BASE  override the download URL prefix (used by tests)
 set -eu
 
-REPO="hallelx2/selah"
+REPO="noxidsoft/selah"
 VERSION="${SELAH_VERSION:-latest}"
 DIR="${SELAH_INSTALL_DIR:-$HOME/.local/bin}"
 

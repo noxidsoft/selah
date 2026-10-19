@@ -143,7 +143,7 @@ describe("install", () => {
     const seen: number[] = []
     // the mirror twice and Gutenberg four times, then a sentence naming both
     await expect(installScenes(dir, (e) => seen.push(e.done), flaky, { sleep: async () => {} })).rejects.toThrow(
-      "Could not download plate 005 from selah.hallelx2.com: the server is busy (HTTP 503). Tried 2 times. Then: Could not download plate 005 from www.gutenberg.org: the server is busy (HTTP 503). Tried 4 times.",
+      "Could not download plate 005 from selah.noxidsoft.stream: the server is busy (HTTP 503). Tried 2 times. Then: Could not download plate 005 from www.gutenberg.org: the server is busy (HTTP 503). Tried 4 times.",
     )
     const after = seen.length
     await new Promise((r) => setTimeout(r, 60))
@@ -180,18 +180,18 @@ describe("install", () => {
     const ok = serve([])
     const mirrorMissing007 = (async (url: string) => {
       urls.push(String(url))
-      if (String(url).startsWith("https://selah.hallelx2.com/") && String(url).endsWith("007.jpg")) return new Response("not here", { status: 404 })
+      if (String(url).startsWith("https://selah.noxidsoft.stream/") && String(url).endsWith("007.jpg")) return new Response("not here", { status: 404 })
       return ok(url as never)
     }) as unknown as typeof fetch
     await installScenes(dir, undefined, mirrorMissing007, { sleep: async () => {} })
     expect(scenesInstalled(dir)).toBe(true)
     expect(urls.filter((u) => u.includes("gutenberg"))).toEqual(["https://www.gutenberg.org/cache/epub/8710/images/007.jpg"])
-    expect(urls.filter((u) => u.startsWith("https://selah.hallelx2.com/scenes/"))).toHaveLength(100)
+    expect(urls.filter((u) => u.startsWith("https://selah.noxidsoft.stream/scenes/"))).toHaveLength(100)
   })
 
   test("SELAH_SCENES_SOURCE replaces both sources", () => {
     expect(scenesSources({ SELAH_SCENES_SOURCE: "https://example.org/dore" })).toEqual(["https://example.org/dore/"])
-    expect(scenesSources({})).toEqual(["https://selah.hallelx2.com/scenes/", "https://www.gutenberg.org/cache/epub/8710/images/"])
+    expect(scenesSources({})).toEqual(["https://selah.noxidsoft.stream/scenes/", "https://www.gutenberg.org/cache/epub/8710/images/"])
   })
 
   test("a plate that does not match its checksum is refused", async () => {
