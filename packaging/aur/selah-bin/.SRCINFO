@@ -1,6 +1,6 @@
 pkgbase = selah-bin
 	pkgdesc = A Bible for the terminal: study desk, Matthew Henry, Hebrew and Greek, Doré engravings, Ask your own Claude or Codex, and an honest reading tracker
-	pkgver = 0.3.2
+	pkgver = 0.3.3
 	pkgrel = 1
 	url = https://github.com/noxidsoft/selah
 	arch = x86_64
@@ -10,11 +10,11 @@ pkgbase = selah-bin
 	conflicts = selah
 	options = !strip
 	options = !debug
-	source = LICENSE-0.3.2::https://raw.githubusercontent.com/noxidsoft/selah/v0.3.2/LICENSE
+	source = LICENSE-0.3.3::https://raw.githubusercontent.com/noxidsoft/selah/v0.3.3/LICENSE
 	sha256sums = 9e37de5278988bdf453acf1055de228e19f2ed4e892cd3bc9b0af1b7491b9b5b
-	source_x86_64 = selah-0.3.2-x86_64::https://github.com/noxidsoft/selah/releases/download/v0.3.2/selah-linux-x64
+	source_x86_64 = selah-0.3.3-x86_64::https://github.com/noxidsoft/selah/releases/download/v0.3.3/selah-linux-x64
 	sha256sums_x86_64 = ac851991e81bbdea3dcc30129e9ff74d05f74c80d49a56c7907d0e3cb6a582a7
-	source_aarch64 = selah-0.3.2-aarch64::https://github.com/noxidsoft/selah/releases/download/v0.3.2/selah-linux-arm64
+	source_aarch64 = selah-0.3.3-aarch64::https://github.com/noxidsoft/selah/releases/download/v0.3.3/selah-linux-arm64
 	sha256sums_aarch64 = 1e8beb1b423b9d3b43a9eee9a246c5ccf576eea3f4028dfab0ffeb26b9d6c894
 
 pkgname = selah-bin

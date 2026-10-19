@@ -1,6 +1,6 @@
 # Maintainer: Nole Dixon
 pkgname=selah-bin
-pkgver=0.3.2
+pkgver=0.3.3
 pkgrel=1
 pkgdesc="A Bible for the terminal: study desk, Matthew Henry, Hebrew and Greek, Doré engravings, Ask your own Claude or Codex, and an honest reading tracker"
 arch=('x86_64' 'aarch64')
